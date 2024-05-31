@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/Data/EquipoData.dart';
 import 'package:project/Model/Equipo.dart';
+import 'package:project/View/Screem/LoginPage.dart';
+import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/buildTextFieldW.dart';
 import 'package:project/View/Widget/drawer.dart';
@@ -15,6 +17,7 @@ class CEquipoScreem extends StatefulWidget {
 
 class _CEquipoScreemState extends State<CEquipoScreem> {
   final _formKey = GlobalKey<FormState>();
+  late String _nombreEquipo;
   late String _deporte;
   late DateTime _fecha;
   late TimeOfDay _hora;
@@ -44,6 +47,15 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 10),
+                  buildTextField(
+                    labelText: 'Nombre del equipo',
+                    prefixIcon: Icons.sports_soccer,
+                    onSaved: (value) => _nombreEquipo = value!,
+                    validator: (value) => value!.isEmpty
+                        ? 'Por favor ingresa el nombre del equipo'
+                        : null,
+                  ),
                   SizedBox(height: 10),
                   buildTextField(
                     labelText: 'Deporte',
@@ -139,6 +151,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final nuevoEquipo = Equipo(
+        nombreEquipo: _nombreEquipo,
         id: equipos.length + 1,
         nombreDeporte: _deporte,
         fecha: _fecha,
@@ -148,9 +161,15 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
         creadorId: _creadorId,
         jugadoresNecesarios: _maxJugadores,
         buscajugadores: _buscaJugadores,
-        jugadoresIds: [],
+        // jugadoresIds: [2,4],
       );
       equipos.add(nuevoEquipo);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Equipo registrado exitosamente'),
+        ),
+      );
+      Navigator.of(context).pushNamed(MyHomePage.nombre);
       print('Equipo creado: $nuevoEquipo');
     }
   }

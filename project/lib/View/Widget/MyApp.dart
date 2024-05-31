@@ -4,6 +4,7 @@ import 'package:project/View/Screem/ComentariosScreem.dart';
 import 'package:project/View/Screem/LoginPage.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
+import 'package:project/View/Screem/RegisterUsuario.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         UnirseJuegoScreem.nombre: (context) => const UnirseJuegoScreem(),
         ReservarScreem.nombre: (context) => const ReservarScreem(),
         ComemtariosS.nombre: (context) => const ComemtariosS(),
+        RegisterUsuario.nombre: (context) => const RegisterUsuario(),
       },
       //home: LoginPage(),
     );

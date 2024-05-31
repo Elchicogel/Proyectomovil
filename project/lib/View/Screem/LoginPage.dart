@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
+import 'package:project/View/Screem/RegisterUsuario.dart';
 import 'package:project/View/component/MyButton.dart';
 import 'package:project/View/component/MyTextField.dart';
 import 'package:project/View/component/SquareTile.dart';
 import 'package:project/localstore/sharepreference.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  LoginPage({Key? key}) : super(key: key);
   static const String nombre = 'login';
   final prefs = PrefernciaUsuario();
 
@@ -66,7 +67,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -77,15 +78,15 @@ class LoginPage extends StatelessWidget {
               // logo
               const Icon(
                 Icons.person,
-                size: 100,
+                size: 120,
                 color: Colors.black,
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height:0 ),
 
               // welcome back
               Text(
-                'Sport Champions',
+                'Bienvenido!',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 24,
@@ -120,10 +121,7 @@ class LoginPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.black),
-                    ),
+                    
                   ],
                 ),
               ),
@@ -150,17 +148,11 @@ class LoginPage extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text(
-                        'Or continue with',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
+                   
                     Expanded(
                       child: Divider(
                         thickness: 0.5,
-                        color: Colors.orange,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -169,40 +161,33 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // google + apple sign in buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  // google button
-                  SquareTile(imagePath: 'assets/images/google.png'),
-
-                  SizedBox(width: 25),
-
-                  // apple button
-                  SquareTile(imagePath: 'assets/images/apple.png')
-                ],
-              ),
+            
 
               const SizedBox(height: 20),
 
-              // not a member? register now
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member?',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    'Register now',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+             
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(RegisterUsuario.nombre);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not a member?',
+                      style: TextStyle(color: Colors.black),
                     ),
-                  ),
-                ],
-              )
+                    const SizedBox(width: 4),
+                    Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

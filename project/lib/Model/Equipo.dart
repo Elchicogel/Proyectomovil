@@ -11,7 +11,7 @@ class Equipo {
   int? creadorId;
   int? jugadoresNecesarios;
   bool? buscajugadores; // true o false
-  List<int>? jugadoresIds;
+  List<int>? jugadoresIds=[];
   Equipo({
     this.id,
     this.nombreDeporte,
@@ -63,8 +63,5 @@ class Equipo {
 
   factory Equipo.fromJson(String source) => Equipo.fromMap(json.decode(source));
 
-  @override
-  String toString() {
-    return 'Equipo(id: $id, nombreDeporte: $nombreDeporte, nombreEquipo: $nombreEquipo, fecha: $fecha, hora: $hora, lugar: $lugar, creadorId: $creadorId, jugadoresNecesarios: $jugadoresNecesarios, buscajugadores: $buscajugadores, jugadoresIds: $jugadoresIds)';
-  }
+ 
 }
