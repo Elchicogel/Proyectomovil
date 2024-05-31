@@ -1,88 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:project/Data/EquipoData.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
-import 'mmmm.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
   static const String nombre = 'MyHomePage';
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarW(title: "Bienvenido"),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: 200,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(
-                  'assets/images/homepage.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'El siguiente aplicativo se desarrollará para facilitar a los jóvenes la organización de actividades deportivas informales cuando deseen participar en deportes pero les falten compañeros de equipo. Además, la aplicación ofrecerá la posibilidad de alquilar instalaciones deportivas en caso de ser necesario. El propósito de la aplicación es promover un estilo de vida activo y saludable, facilitando la participación en deportes recreativos y la socialización entre los usuarios.',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Selecciona una opción:',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    //Navigator.of(context).push(
-                    //  MaterialPageRoute(
-                    //  builder: (context) => PppScreen(), // Ir a ppp.dart
-                    //),
-                    // );
-                  },
-                  icon: Icon(Icons.star),
-                  label: Text('Puntuación'),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => MmmmScreen(), // Ir a mmmm.dart
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.message),
-                  label: Text('Comunicación'),
-                ),
-              ],
-            ),
-          ],
+      appBar: AppBarW(title: 'Bienvenido'),
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
         ),
+        itemCount: equipos.length,
+        itemBuilder: (context, index) {
+          final equipo = equipos[index];
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 85,
+            shadowColor: Colors.blue,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    child: Icon(Icons.sports_soccer),
+                    radius: 30,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    equipo.nombreDeporte ?? "",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Equipo: ${equipo.nombreEquipo}',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Lugar: ${equipo.lugar}',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Jugadores necesarios: ${equipo.jugadoresNecesarios}',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
-      drawer: DrawerW(
-        user: "Martin",
-        correo: "Martin@gmail.com",
-      ),
+      drawer: DrawerW(user: "Martin", correo: "Martin@gmail.com"),
     );
   }
 }
