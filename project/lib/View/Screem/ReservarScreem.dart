@@ -5,6 +5,7 @@ import 'package:project/Model/InstalacionDeportiva.dart';
 import 'package:project/Model/Reserva.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
+import 'package:project/localstore/sharepreference.dart';
 
 class ReservarScreem extends StatefulWidget {
   const ReservarScreem({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class ReservarScreem extends StatefulWidget {
 }
 
 class _ReservarScreemState extends State<ReservarScreem> {
+   final prefs = PrefernciaUsuario();
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _selectedTime = TimeOfDay.now();
 

@@ -23,6 +23,10 @@ class PrefernciaUsuario {
     return _prefs.getString('contrasena') ?? "contrasena incorrecta";
   }
 
+  String get nombreusuario {
+    return _prefs.getString('nombreusuario') ?? "usuario no encontrado";
+  }
+
   set contrasena(String value) {
     _prefs.setString('contrasena', value);
   }

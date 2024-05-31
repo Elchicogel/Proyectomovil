@@ -3,11 +3,12 @@ import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/component/MyButton.dart';
 import 'package:project/View/component/MyTextField.dart';
 import 'package:project/View/component/SquareTile.dart';
+import 'package:project/localstore/sharepreference.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   static const String nombre = 'login';
-  //final prefs = PrefernciaUsuario();
+  final prefs = PrefernciaUsuario();
 
   // text editing controllers
   final usernameController = TextEditingController();
@@ -15,15 +16,55 @@ class LoginPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn(BuildContext context) {
-    //prefs.usuario = usernameController.text;
-    //prefs.contrasena = passwordController.text;
-    // print (prefs.usuario);
-    Navigator.of(context).pushNamed(MyHomePage.nombre);
+    prefs.nombreusuario = usernameController.text;
+    prefs.contrasena = passwordController.text;
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      _showVerificationDialog(context);
+    } else {
+      Navigator.of(context).pushNamed(MyHomePage.nombre);
+    }
+  }
+
+  void _showVerificationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            'Por favor Verifica',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.blueAccent,
+              fontFamily: 'RobotoMono',
+            ),
+          ),
+          content: Text(
+            'Por favor verifica la información ingresada.',
+            style: TextStyle(
+              fontFamily: 'RobotoMono',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontFamily: 'RobotoMono',
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    //  prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
       backgroundColor: Colors.orange,
       body: SafeArea(
@@ -31,7 +72,7 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 0),
+              const SizedBox(height: 20),
 
               // logo
               const Icon(
@@ -47,7 +88,9 @@ class LoginPage extends StatelessWidget {
                 'Sport Champions',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'RobotoMono',
                 ),
               ),
 
@@ -151,7 +194,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(color: Colors.black),
                   ),
                   const SizedBox(width: 4),
-                  const Text(
+                  Text(
                     'Register now',
                     style: TextStyle(
                       color: Colors.black,

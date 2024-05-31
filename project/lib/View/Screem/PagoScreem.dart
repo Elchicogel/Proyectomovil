@@ -5,6 +5,7 @@ import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
+import 'package:project/localstore/sharepreference.dart';
 
 class PagoScreem extends StatefulWidget {
   const PagoScreem({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class _PagoScreemState extends State<PagoScreem> {
 
   @override
   Widget build(BuildContext context) {
+     final prefs = PrefernciaUsuario();
     return SafeArea(
       child: Scaffold(
         appBar:AppBarW(title: "Realizar pago"),

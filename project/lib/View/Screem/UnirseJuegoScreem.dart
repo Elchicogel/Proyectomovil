@@ -3,6 +3,7 @@ import 'package:project/Data/EquipoData.dart';
 import 'package:project/Model/Equipo.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
+import 'package:project/localstore/sharepreference.dart';
 
 class UnirseJuegoScreem extends StatefulWidget {
   const UnirseJuegoScreem({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class UnirseJuegoScreem extends StatefulWidget {
 }
 
 class _UnirseJuegoScreemState extends State<UnirseJuegoScreem> {
+   final prefs = PrefernciaUsuario();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

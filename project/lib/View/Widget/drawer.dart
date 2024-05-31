@@ -4,9 +4,10 @@ import 'package:project/View/Screem/ComentariosScreem.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/localstore/sharepreference.dart';
 
 class DrawerW extends StatefulWidget {
- final  String? user;
+  final String? user;
   final String? correo;
   DrawerW({
     Key? key,
@@ -19,6 +20,7 @@ class DrawerW extends StatefulWidget {
 }
 
 class _DrawerWState extends State<DrawerW> {
+  final prefs = PrefernciaUsuario();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -28,9 +30,8 @@ class _DrawerWState extends State<DrawerW> {
           decoration: BoxDecoration(
             color: Colors.blue,
           ),
-          accountName: Text(widget.user ?? 'Usuario',
-              style: TextStyle(color: Colors.white)),
-          accountEmail: Text(widget.correo ?? 'Usuario',
+          accountName: Text('Hola,', style: TextStyle(color: Colors.white)),
+          accountEmail: Text(prefs.nombreusuario,
               style: TextStyle(color: Colors.white70)),
           currentAccountPicture: CircleAvatar(
             backgroundColor: Colors.white,
